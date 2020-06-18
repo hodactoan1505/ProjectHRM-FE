@@ -1,0 +1,21 @@
+{
+    "menu.dashboard" : "Trang chủ",
+    "menu.profile" : "Hồ sơ cá nhân",
+    "menu.employeeManager" : "Quản lý nhân viên",
+    "menu.addEmployee" : "Thêm hồ sơ",
+    "menu.departmentManager" : "Quản lý bộ phận",
+    "mennu.projectManager" : "Quản lý dự án",
+    "menu.systemManager" : "Quản lý hệ thống",
+
+
+    "header.hello" : "Xin chào",
+    "header.logout" : "Đăng xuất",
+
+
+    "search.name" : "Tìm theo tên",
+    "search.department" : "Tìm theo bộ phận",
+    "search.project" : "Tìm theo dự án",
+    "search.skill" : "Tìm theo kĩ năng",
+    "search.buttonSubmit" : "Tìm kiếm"
+
+} 

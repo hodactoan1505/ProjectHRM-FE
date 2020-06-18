@@ -1,0 +1,16 @@
+<header>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="header-left">
+                <button (click)="showHideMenu()"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="header-right">
+                <span>{{ 'header.hello' | translate }}, </span>
+                <a [routerLink]="[ '' ]" class="user">{{ user.username }}</a>
+                <button (click)="logout()" class="btn-logout">{{ 'header.logout' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</header>

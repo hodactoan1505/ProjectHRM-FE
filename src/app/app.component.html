@@ -1,0 +1,16 @@
+<div id="wrapper">   
+    <!-- Menu left -->
+    <app-menu *ngIf="islogged" [isShowMenu] = "showMenu"></app-menu>
+
+    <!-- Cointainer -->
+    <div [ngClass]="{'wrap-body' : showMenu}" class="body">
+        <app-header *ngIf="islogged"></app-header>
+        <router-outlet></router-outlet>
+    </div>
+    <!-- Loading -->
+    <app-loading></app-loading>
+    <input type="file" id="filePicker" (change)="handleFileSelect($event)" accept="image/x-png, image/jpeg">
+    <img [src]="image" />
+</div>
+
+

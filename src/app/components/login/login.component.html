@@ -1,0 +1,12 @@
+<div id="login">
+    <div class="form">
+        <div class="group-line">
+            <input placeholder="username" type="text" [(ngModel)]="userRequest.username"/>
+        </div>
+        <div class="group-line">
+            <input placeholder="password" type="password" [(ngModel)]="userRequest.password"/>
+        </div>
+        <button class="btn-login" (click)="login()">Login</button>
+        <div>{{ message }}</div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+/* 
+    Style Css For Project
+    1. Menu
+    2. Header
+    3. Loading
+*/
+.body.wrap-body {
+    /* margin-left: 200px; */
+    left: 200px;
+}
+.body {
+    transition: .5s all ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: #e4e5e6;
+    box-shadow: 10px 2px 10px #000;
+}
+
+.show-menu {
+    left: 0!important;
+}
+
+/* 
+    1. Menu
+*/ 
+
+.menu-left {
+    position: fixed;
+    left: 0px;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: rgb(48, 60, 84);
+    transition: .5s all ease-in-out;
+}
+
+
+/* 
+    2. Header
+*/
+header {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+header .header-right {
+    text-align: right;
+}
+
+header .header-right .btn-logout {
+    border: none;
+    background: #fff;
+    color: #0090ff;
+    margin-left: 5px;
+    position: relative;
+}
+header .header-right .btn-logout:hover {
+    text-decoration: underline;
+}
+
+button.btn-logout:before {
+    content: "";
+    width: 1px;
+    background-color: #000;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 50%;
+    transform: translateY(-50%);
+}
+
+
+/* 
+    3. Loading
+*/
+.loading {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+}
+
+.loading .loading-gif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 100px;
+}
