@@ -17,7 +17,8 @@ import { ActionService } from 'src/app/services/action.service';
 })
 export class LoginComponent implements OnInit {
 
-  userRequest : UserRequest = new UserRequest();
+  userRequest : UserRequest = new UserRequest;
+
   message : string;
   
   constructor(
@@ -63,11 +64,11 @@ export class LoginComponent implements OnInit {
           
           // Giải mã chuỗi token
           let decoded = jwt_decode(data.data);
-          this.authService.updateUser(decoded.userReponse);
+          this.authService.updateUser(decoded.employee);
 
 
           // Lấy danh sách màn hình từ token và đưa vào service lắng nghe
-          let menus = this.authService.getScreen(decoded.userReponse.role.screen);
+          let menus = this.authService.getScreen(decoded.employee.role.screen);
           this.authService.updateMenus(menus);
           
           // Chuyển trang

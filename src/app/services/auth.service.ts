@@ -45,8 +45,8 @@ export class AuthService implements CanActivate {
     Function Kiểm tra đăng nhập vào hệ thống
     Trả về token nếu thành công
   */ 
-  login(userReq : UserRequest) {
-    return this.http.post(Constants.baseURL + "/login", userReq).pipe();
+  login(userRequest : UserRequest) {
+    return this.http.post(Constants.baseURL + "/login", userRequest).pipe();
   }
 
   /*
@@ -91,7 +91,7 @@ export class AuthService implements CanActivate {
     // Giải mã chuỗi token
     let decoded = jwt_decode(token);
 
-    let userReponse: UserResponse = decoded.userReponse;
+    let userReponse: UserResponse = decoded.employee;
 
     if(userReponse == null) {
       return null;
@@ -121,7 +121,7 @@ export class AuthService implements CanActivate {
     let decoded = jwt_decode(token);
 
     // Lấy danh sách màn hình
-    let screen  = decoded.userReponse.role.screen;
+    let screen  = decoded.employee.role.screen;
     let menus = this.getScreen(screen);
     return menus;
   }

@@ -1,3 +1,4 @@
+import { ErrorComponent } from './components/error/error.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent  },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthService]},
   { path: "", redirectTo: "dashboard", pathMatch: "full"},
-  { path: "employee", component: EmployeeComponent, canActivate: [AuthService]}
+  { path: "employee", component: EmployeeComponent, canActivate: [AuthService]},
+  { path: "error", component: ErrorComponent, canActivate: [AuthService]}
 ];
 
 @NgModule({

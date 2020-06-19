@@ -18,6 +18,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { EmployeeComponent } from './components/employee/employee.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EmployeeComponent } from './components/employee/employee.component';
     HeaderComponent,
     MenuComponent,
     LoadingComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

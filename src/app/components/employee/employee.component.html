@@ -1,12 +1,60 @@
 <div class="wrap-routing">
-    <section class="search">
-        <input type="text" [placeholder]=" 'search.name' | translate">
-        <input type="text" [placeholder]=" 'search.department' | translate">
-        <input type="text" [placeholder]=" 'search.project' | translate">
-        <input type="text" [placeholder]=" 'search.skill' | translate">
-        <button class="btn-search">{{ 'search.buttonSubmit' | translate }}</button>
-    </section>
-    <section class="list">
-        
-    </section>
+    <div class="container-fluid ">
+        <section class="search">
+            <!-- Tìm kiếm theo tên -->
+            <div class="group">
+                <span class="title">{{ 'search.name' | translate }}</span>
+                <input type="text" [(ngModel)]="employeeSearch.name">
+            </div>
+            
+            <!-- Department -->
+            <div class="group">
+                <span class="title">{{ 'search.department' | translate }}</span>
+                <select [(ngModel)]="employeeSearch.department" [compareWith]="compareFn">
+                    <!-- <option value="">All</option> -->
+                    <option *ngFor="let item of departments" class="form-control" [ngValue]="item">{{ item.name }}</option>
+                </select> 
+            </div>
+
+            <!-- Project-->
+            <div class="group">
+                <span class="title">{{ 'search.project' | translate }}</span>
+                <select [(ngModel)]="employeeSearch.project" [compareWith]="compareFn">
+                    <!-- <option value= null>Chọn dự án</option> -->
+                    <option *ngFor="let item of projects" class="form-control" [ngValue]="item">{{ item.name }}</option>
+                </select> 
+            </div>
+
+            <input type="text" [placeholder]=" 'search.skill' | translate">
+            <button class="btn-search" (click)="search()">{{ 'search.buttonSubmit' | translate }}</button>
+        </section>
+        <section class="list">
+            <table style="width : 100%">
+                <tr>
+                    <th class="col-manv">Mã nhân viên</th>
+                    <th class="col-name">Họ tên</th>
+                    <th class="col-skill">Kĩ năng lập trình</th>
+                    <th class="col-mail">Gmail</th>
+                    <th class="col-phone">Số điện thoại</th>
+                    <th class="col-derpartment">Bộ phận</th>
+                    <th class="col-project">Dự án đang làm</th>
+                    <th class="col-skype">Skype</th>
+                </tr>
+                <tr *ngFor="let item of employees">
+                    <th class="col-manv">{{ item.id }}</th>
+                    <th class="col-name"><a [routerLink]="['view',item.id]">{{ item.name }}</a></th>
+                    <th class="col-skill">
+                        <ng-container *ngFor="let skill of item.skills">
+                            <a *ngIf="skill.skilled" class="p-item">{{ skill.name }}</a>
+                        </ng-container>                        
+                    </th>
+                    <th class="col-mail">{{ item.gmail }}</th>
+                    <th class="col-phone">{{ item.phone }}</th>
+                    <th class="col-derpartment">{{ item.department.name }}</th>
+                    <th class="col-project">{{ item.project.name }}</th>
+                    <th class="col-skype">{{ item.skype }}</th>
+                </tr>
+            </table>
+        </section>
+    </div>
 </div>
