@@ -1,31 +1,41 @@
 <div class="wrap-routing">
     <div class="container-fluid ">
         <section class="search">
-            <!-- Tìm kiếm theo tên -->
-            <div class="group">
-                <span class="title">{{ 'search.name' | translate }}</span>
-                <input type="text" [(ngModel)]="employeeSearch.name">
-            </div>
-            
-            <!-- Department -->
-            <div class="group">
-                <span class="title">{{ 'search.department' | translate }}</span>
-                <select [(ngModel)]="employeeSearch.department" [compareWith]="compareFn">
-                    <!-- <option value="">All</option> -->
-                    <option *ngFor="let item of departments" class="form-control" [ngValue]="item">{{ item.name }}</option>
-                </select> 
-            </div>
+            <div class="row">
+                <!-- Tìm kiếm theo tên -->
+                <div class="col-md-3">
+                    <label class="label">{{ 'search.name' | translate }}</label>
+                    <input type="text" [(ngModel)]="employeeRequest.name">
+                </div>
 
-            <!-- Project-->
-            <div class="group">
-                <span class="title">{{ 'search.project' | translate }}</span>
-                <select [(ngModel)]="employeeSearch.project" [compareWith]="compareFn">
-                    <!-- <option value= null>Chọn dự án</option> -->
-                    <option *ngFor="let item of projects" class="form-control" [ngValue]="item">{{ item.name }}</option>
-                </select> 
-            </div>
+                <!-- Department -->
+                <div class="col-md-3">
+                    <label class="label">{{ 'search.department' | translate }}:</label>
+                    <ng-multiselect-dropdown 
+                    [data]="departments"
+                    [settings]="SettingsSingle"
+                    [(ngModel)]="employeeRequest.department"
+                    (onSelect)="onItemDepartmentSelect($event)"></ng-multiselect-dropdown>
+                </div>
 
-            <input type="text" [placeholder]=" 'search.skill' | translate">
+                <!-- Project-->
+                <div class="col-md-3">
+                    <label class="label">{{ 'search.project' | translate }}</label>
+                    <ng-multiselect-dropdown 
+                    [data]="projects"
+                    [settings]="SettingsSingle"
+                    [(ngModel)]="employeeRequest.project"></ng-multiselect-dropdown>
+                </div>
+
+                <!-- Skills-->
+                <div class="col-md-3">
+                    <label class="label">{{ 'search.skill' | translate }}</label>
+                    <ng-multiselect-dropdown 
+                    [data]="skills"
+                    [settings]="SettingsMultiple"
+                    [(ngModel)]="employeeRequest.skills"></ng-multiselect-dropdown>
+                </div>                
+            </div>
             <button class="btn-search" (click)="search()">{{ 'search.buttonSubmit' | translate }}</button>
         </section>
         <section class="list">
@@ -40,18 +50,18 @@
                     <th class="col-project">Dự án đang làm</th>
                     <th class="col-skype">Skype</th>
                 </tr>
-                <tr *ngFor="let item of employees">
-                    <th class="col-manv">{{ item.id }}</th>
+                <tr *ngFor="let item of employees" (dblclick)="view(item)">
+                    <th class="col-manv">BRYCENVN{{ item.id }}</th>
                     <th class="col-name"><a [routerLink]="['view',item.id]">{{ item.name }}</a></th>
                     <th class="col-skill">
-                        <ng-container *ngFor="let skill of item.skills">
-                            <a *ngIf="skill.skilled" class="p-item">{{ skill.name }}</a>
-                        </ng-container>                        
+                        <span *ngFor="let skill of item.skills">
+                            {{ skill.name }}
+                        </span>                        
                     </th>
                     <th class="col-mail">{{ item.gmail }}</th>
                     <th class="col-phone">{{ item.phone }}</th>
                     <th class="col-derpartment">{{ item.department.name }}</th>
-                    <th class="col-project">{{ item.project.name }}</th>
+                    <th class="col-project">{{ (item.project != null) ?  item.project.name : ""}}</th>
                     <th class="col-skype">{{ item.skype }}</th>
                 </tr>
             </table>

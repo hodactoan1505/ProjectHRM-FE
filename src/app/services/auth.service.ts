@@ -1,3 +1,4 @@
+import { ActionToken } from './../config/action-token';
 import { UserResponse } from './../models/response/user-response';
 import { UserRequest } from './../models/request/user-request';
 import { HttpClient } from '@angular/common/http';
@@ -12,8 +13,8 @@ import { Menu } from '../models/response/menu';
   providedIn: 'root'
 })
 export class AuthService implements CanActivate {
-  // Xác định đã đăng nhập chưa ?
-  isLogin = new BehaviorSubject<boolean>(sessionStorage.getItem("isLogin") ? true : false)
+  // Xác định đã đăng nhập chưa ?. Mặc định sẽ đập token ra kiểm tra 
+  isLogin = new BehaviorSubject<boolean>(ActionToken.expirationToken())
   currentLogin = this.isLogin.asObservable();
 
   constructor(

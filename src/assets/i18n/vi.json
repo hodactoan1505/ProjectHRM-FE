@@ -16,6 +16,11 @@
     "search.department" : "Tìm theo bộ phận",
     "search.project" : "Tìm theo dự án",
     "search.skill" : "Tìm theo kĩ năng",
-    "search.buttonSubmit" : "Tìm kiếm"
+    "search.buttonSubmit" : "Tìm kiếm",
+
+
+    "error.messageEmployeeSkillEmpty" : "Cần có ít nhất 1 kĩ năng",
+    "error.messageEmployeeDepartmentEmpty" : "Chọn bộ phận nhân viên",
+    "error.messageEmployeeProjectEmpty" : "Chọn dự án cho nhân viên"
 
 } 

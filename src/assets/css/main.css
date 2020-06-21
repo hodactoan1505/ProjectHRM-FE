@@ -3,6 +3,8 @@
     1. Menu
     2. Header
     3. Loading
+    4. AddEmployee
+    5. Message
 */
 .body.wrap-body {
     /* margin-left: 200px; */
@@ -22,6 +24,10 @@
 
 .show-menu {
     left: 0!important;
+}
+
+.content {
+    padding: 30px 0;
 }
 
 /* 
@@ -95,4 +101,56 @@ button.btn-logout:before {
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     width: 100px;
+}
+
+/* 4. AddEmployee */
+.wrap-avatar {
+    border: 1px solid;
+    width: 115px;
+    height: 115px;
+}
+
+.wrap-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.error-validate {
+    border: 2px solid red;
+    outline: none;
+}
+
+.error-validate-dropdown .multiselect-dropdown .dropdown-btn {
+    border-color: red !important;
+}
+
+
+/* 
+    5. Message
+*/
+.wrap-massage {
+    width: 700px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 10px;
+    margin: 0 auto;
+    position: fixed;
+    z-index: 5;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -30px;
+    border-radius: 3px;
+    transition: 0.3s all ease-in-out;
+
+}
+
+.wrap-massage.show-message {
+    top: 5px;
+}
+
+.wrap-massage p {
+    margin: 0;
+    text-align: center;
 }

@@ -1,3 +1,6 @@
+import { error } from 'protractor';
+import { SkillResponse } from 'src/app/models/response/skill-response';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { HttpReponse } from './../../models/response/http-reponse';
 import { EmployeeResponse } from './../../models/response/employee-response';
 import { Constants } from 'src/app/config/constants';
@@ -21,8 +24,28 @@ import { ProjectResponse } from 'src/app/models/response/project-response';
 export class EmployeeComponent implements OnInit {
 
   user : UserResponse = new UserResponse;
-
   
+  /*
+    Danh sách cài đặt của selectbox
+  */
+  SettingsSingle:IDropdownSettings = {
+    singleSelection: true,
+    idField: 'id',
+    textField: 'name',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    allowSearchFilter: true,
+  };
+
+  // Dropdown setting cho chọn nhiều giá trị
+  SettingsMultiple:IDropdownSettings = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'name',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    allowSearchFilter: true,
+  };
 
   constructor(
     private employeeService : EmployeeService,
@@ -41,15 +64,10 @@ export class EmployeeComponent implements OnInit {
         this.user = user;
         if(this.user != null) {
           this.getData();
-          this.getDepartment();
-          this.getProject();
+          this.getSkill();
         }
-       
       }
     )
-
-    // this.employeeSearch.department = null;
-    // this.employeeSearch.project = null;
   }
 
   /*
@@ -68,21 +86,23 @@ export class EmployeeComponent implements OnInit {
     }
 
     if(this.user.role.id == Constants.getRoleDepartmentId && this.user.role.name == Constants.getRoleDepartmentName) {
-      this.employeeRequest.department = this.user.department;
+      this.employeeRequest.department = [this.user.department];
     }
 
     if(this.user.role.id == Constants.getRoleLeaderId && this.user.role.name == Constants.getRoleLeaderName) {
-      this.employeeRequest.department = this.user.department;
-      this.employeeRequest.project = this.user.project;
+      this.employeeRequest.department = [this.user.department];
+      this.employeeRequest.project = [this.user.project];
     }
-
     this.employeeService.getEmployee(this.employeeRequest).subscribe(
       (data : HttpReponse) => {
         if(data.code == Exception.success) {
           this.employees = data.data;
+          this.getDepartment();
+          this.getProject();
         }      
       },
       (error) => {
+        this.actionService.updateMessage(error);
         this.router.navigate(['error']);
       }
      );
@@ -94,9 +114,15 @@ export class EmployeeComponent implements OnInit {
   */
   departments : DepartmentResponse[] = [];
   getDepartment() {
-    this.employeeService.getDepartment().subscribe(
+    this.employeeService.getDepartment(this.employeeRequest).subscribe(
       (data : HttpReponse) => {
-        this.departments = data.data
+        if(data.code == Exception.success) {
+          this.departments = data.data;
+        }
+      },
+      (error) => {
+        this.actionService.updateMessage(error);
+        this.router.navigate(['error']);
       }
     );
   }
@@ -107,11 +133,35 @@ export class EmployeeComponent implements OnInit {
   */
   projects : ProjectResponse[] = [];
   getProject() {
-    this.employeeService.getProject().subscribe(
+    this.employeeService.getProject(this.employeeRequest).subscribe(
       (data : HttpReponse) => {
-        this.projects = data.data;
+        if(data.code == Exception.success) {
+          this.projects = data.data;
+        }
+      },
+      (error) => {
+        this.actionService.updateMessage(error);
+        this.router.navigate(['error']);
       }
     );
+  }
+
+  /*
+    Lấy danh sách kĩ năng
+  */
+  skills : SkillResponse[] = [];
+  getSkill() {
+    this.employeeService.getSkill().subscribe(
+      (data : HttpReponse) => {
+       if(data.code == Exception.success) {
+         this.skills = data.data;
+       }
+      },
+      (error) => {
+        this.actionService.updateMessage(error);
+        this.router.navigate(['error']);
+      }
+    )
   }
 
   /*
@@ -121,17 +171,32 @@ export class EmployeeComponent implements OnInit {
   
   search() {
     this.actionService.updateLoading(true);
-    this.employeeService.getEmployee(this.employeeSearch).subscribe(
+    this.employeeService.getEmployee(this.employeeRequest).subscribe(
       (data : HttpReponse) => {
         this.employees = data.data;
         
         this.actionService.updateLoading(false);
+      },
+      (error) => {
+        this.actionService.updateMessage(error);
+        this.router.navigate(['error']);
       }
     )
   }
 
-  compareFn(a : any, b : any) {
-    return a && b && a.num == b.num;
+  /*
+    Khi chọn tên bộ phận thì sẽ cập nhật lại danh sách dự án
+    Chỉ lấy những dự án trong bộ phận  
+  */
+  onItemDepartmentSelect(item : any) {
+    this.employeeRequest.department = [item];
+    this.employeeService.getProject(this.employeeRequest).subscribe(
+      (data :HttpReponse) => this.projects = data.data
+    )
+  }
+
+  view(item : EmployeeRequest) {
+    console.log(item);
   }
 
 }

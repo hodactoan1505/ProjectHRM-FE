@@ -7,7 +7,11 @@ export class Exception {
     // Return 999
     public static get success() : number { return 999; }
 
+    // Response lỗi này khi không xác định. 
+    // Return 998
+    public static get unknown() : number { return 998; }
+
     // Response lỗi khi login thất bại. 
-    // Return 100
-    public static get loginFail() : number { return 100; }
+    // Return 997
+    public static get loginFail() : number { return 997; }
 }

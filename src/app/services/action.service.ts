@@ -32,4 +32,13 @@ export class ActionService {
   }
 
 
+  /*
+    Cập nhật thông báo lỗi hệ thống
+  */ 
+  message = new BehaviorSubject<string>(null);
+  currentMessage = this.message.asObservable();
+
+  updateMessage(value : string) {
+    this.message.next(value);
+  }
 }

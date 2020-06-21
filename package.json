@@ -25,6 +25,8 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
     "jwt-decode": "^2.2.0",
+    "ng-multiselect-dropdown": "^0.2.10",
+    "ng-pick-datetime": "^7.0.0",
     "rxjs": "^6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

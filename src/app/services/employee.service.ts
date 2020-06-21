@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Constants } from './../config/constants';
 import { EmployeeRequest } from './../models/request/employee-request';
 import { ActionToken } from './../config/action-token';
@@ -12,6 +13,7 @@ export class EmployeeService {
 
   constructor(
     private http : HttpClient,
+
   ) { }
   
 
@@ -26,16 +28,29 @@ export class EmployeeService {
   /*
     Lấy danh sách bộ phận
   */
-  getDepartment() {
-    return this.http.get(Constants.baseURL + "/department").pipe();
+  getDepartment(employeeRequest : EmployeeRequest) {
+    return this.http.post(Constants.baseURL + "/department", employeeRequest).pipe();
   }
 
 
-    /*
+  /*
     Lấy danh sách dự án
   */
-  getProject() {
-    return this.http.get(Constants.baseURL + "/project").pipe();
+  getProject(employeeRequest : EmployeeRequest) {
+    return this.http.post(Constants.baseURL + "/project", employeeRequest).pipe();
   }
 
+  /*
+    Lấy danh sách skill
+  */
+  getSkill() {
+    return this.http.get(Constants.baseURL + "/skill").pipe();
+  }
+
+  /*
+    Thêm mới hồ sơ nhân viên
+  */
+  addEmployee(employeeRequest : EmployeeRequest) {
+    return this.http.post(Constants.baseURL + "/employee/add", employeeRequest).pipe();
+  }
 }

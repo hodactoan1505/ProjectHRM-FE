@@ -14,11 +14,16 @@ import { ActionToken } from './config/action-token';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoadingComponent } from './components/loading/loading.component';
+
 // Import TranslateModule
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ViewEmployeeComponent } from './components/view-employee/view-employee.component';
+import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,10 @@ import { ErrorComponent } from './components/error/error.component';
     MenuComponent,
     LoadingComponent,
     EmployeeComponent,
-    ErrorComponent
+    ErrorComponent,
+    ViewEmployeeComponent,
+    AddEmployeeComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,8 @@ import { ErrorComponent } from './components/error/error.component';
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-  })
+  }),
+  NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [
     AuthService,

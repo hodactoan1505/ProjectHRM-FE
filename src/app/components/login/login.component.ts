@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
           this.authService.logged(true);
 
           // Hành động lưu session thông quá class ActionToken
-          ActionToken.saveLogged();
           ActionToken.saveToken(data.data);
           
           // Giải mã chuỗi token
