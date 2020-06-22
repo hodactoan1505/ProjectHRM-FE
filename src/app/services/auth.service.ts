@@ -67,6 +67,7 @@ export class AuthService implements CanActivate {
     this.isLogin.next(false);
     this.user.next(null);
     sessionStorage.removeItem("isLogin");
+    sessionStorage.removeItem("EmployeeDetail");
     sessionStorage.removeItem("token");
     this.router.navigate(['/login']);
   }

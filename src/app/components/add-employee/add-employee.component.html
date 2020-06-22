@@ -33,8 +33,8 @@
                     <!-- Thông tin tình trạng hôn nhân -->
                     <div class="line">
                         <label class="label">Tình trạng hôn nhân: </label>
-                        <input type="radio" [value]="true"  [(ngModel)]="employeeRequest.married" name="married" /><label for="">Độc thân</label>
-                        <input type="radio" [value]="false" [(ngModel)]="employeeRequest.married" name="married"/><label for="">Đã kết hôn</label>
+                        <input type="radio" [value]="false"  [(ngModel)]="employeeRequest.married" name="married" /><label for="">Độc thân</label>
+                        <input type="radio" [value]="true" [(ngModel)]="employeeRequest.married" name="married"/><label for="">Đã kết hôn</label>
                     </div>
                 </div>
             </div>
@@ -83,16 +83,10 @@
                     [settings]="SettingsSingle"
                     [(ngModel)]="employeeRequest.department"
                     (onSelect)="onItemDepartmentSelect($event)"
-                    [ngClass]="{'error-validate-dropdown': departmentValidate}"></ng-multiselect-dropdown>
+                    [ngClass]="{'error-validate-dropdown': departmentValidate}"
+                    (onDeSelect)="onItemDeSelect($event)"></ng-multiselect-dropdown>
                 </div>
-                <!-- <div class="line">
-                    <label class="label">Kinh nghiệm vào công ty: </label>
-                    <ng-multiselect-dropdown
-                    [data]="experiences"
-                    [settings]="dropdownSettings"
-                    [(ngModel)]="employeeRequest.experience"
-                    ></ng-multiselect-dropdown>
-                </div>  -->
+
                 <!-- Thông tin dự án -->
                 <div class="line">
                     <label class="label">Dự án đang tham gia</label>
@@ -100,7 +94,8 @@
                     [data]="projects" 
                     [settings]="SettingsSingle"
                     [(ngModel)]="employeeRequest.project"
-                    [ngClass]="{'error-validate-dropdown': projectValidate}"></ng-multiselect-dropdown>
+                    [ngClass]="{'error-validate-dropdown': projectValidate}"
+                    [disabled]="isSelectDepartment"></ng-multiselect-dropdown>
                 </div>
                 <!-- Thông tin hết hạn thử việc -->
                 <div class="line">
@@ -114,7 +109,8 @@
                 </div> 
             </div>
         </div>
-        <button (click)="create()">Click</button>
+        <button (click)="create()">{{ 'button.titleAddEmployee' | translate }}</button>
+        <button (click)="exit()">{{ 'button.titleBack' | translate }}</button>
     </div>
 </div>
 

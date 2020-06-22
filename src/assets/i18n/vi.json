@@ -6,7 +6,7 @@
     "menu.departmentManager" : "Quản lý bộ phận",
     "mennu.projectManager" : "Quản lý dự án",
     "menu.systemManager" : "Quản lý hệ thống",
-
+    "menu.addDepartmentManager" : "Tạo mới bộ phận",
 
     "header.hello" : "Xin chào",
     "header.logout" : "Đăng xuất",
@@ -21,6 +21,11 @@
 
     "error.messageEmployeeSkillEmpty" : "Cần có ít nhất 1 kĩ năng",
     "error.messageEmployeeDepartmentEmpty" : "Chọn bộ phận nhân viên",
-    "error.messageEmployeeProjectEmpty" : "Chọn dự án cho nhân viên"
+    "error.messageEmployeeProjectEmpty" : "Chọn dự án cho nhân viên",
 
+    "button.titleAddEmployee" : "Tạo mới hồ sơ",
+    "button.titleDeleteEmployee" : "Xóa nhân viên",
+    "button.titleUpdateEmployee" : "Cập nhật",
+    "button.titleAddDepartment" : "Tạo mới bộ phận",
+    "button.titleBack" : "Quay lại"
 } 

@@ -14,6 +14,7 @@ import { ActionToken } from './config/action-token';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import {DatePipe} from '@angular/common';
 
 // Import TranslateModule
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -24,6 +25,9 @@ import { ViewEmployeeComponent } from './components/view-employee/view-employee.
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MessageComponent } from './components/message/message.component';
+import { DepartmentComponent } from './components/department/department.component';
+import { ProjectComponent } from './components/project/project.component';
+import { AddDepartmentComponent } from './components/add-department/add-department.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,9 @@ import { MessageComponent } from './components/message/message.component';
     ViewEmployeeComponent,
     AddEmployeeComponent,
     MessageComponent,
+    DepartmentComponent,
+    ProjectComponent,
+    AddDepartmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +64,7 @@ import { MessageComponent } from './components/message/message.component';
     AuthService,
     EmployeeService,
     ActionToken,
+    DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: FilterService, multi: true }
   ],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { ActionToken } from './../config/action-token';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpReponse } from '../models/response/http-reponse';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class EmployeeService {
 
   constructor(
     private http : HttpClient,
-
+    private authService : AuthService
   ) { }
   
 
@@ -53,4 +54,38 @@ export class EmployeeService {
   addEmployee(employeeRequest : EmployeeRequest) {
     return this.http.post(Constants.baseURL + "/employee/add", employeeRequest).pipe();
   }
+
+  /*
+    Cập nhật danh sách nhân viên
+  */ 
+  updateEmployee(employeeRequest : EmployeeRequest) {
+    return this.http.put(Constants.baseURL + "/employee/update", employeeRequest).pipe();
+  }
+
+  /*
+    Hồ Sơ nhân viên đang xem chi tiết
+  */
+  employeeDetail = new BehaviorSubject<EmployeeRequest>(sessionStorage.getItem("EmployeeDetail") ? this.getEmployeeDetail() : null);
+  currentEmployeeDetail = this.employeeDetail.asObservable();
+
+  updateEmployeeDetail(employeeDetail : EmployeeRequest) {
+    this.employeeDetail.next(employeeDetail);
+  }
+
+  // Lấy hồ sơ xem chi tiết trong session
+  getEmployeeDetail() {
+    let employeeDetail = JSON.parse(sessionStorage.getItem("EmployeeDetail"));
+    return employeeDetail;
+  }
+
+
+  // Xóa danh sách nhân viên
+  deleteEmployees(list : any) {
+    const options = {
+      headers: new HttpHeaders(),
+      body: list
+    }
+    return this.http.delete(Constants.baseURL + "/employee/delete", options).pipe();
+  }
+
 }

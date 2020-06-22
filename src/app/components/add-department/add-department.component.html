@@ -1,0 +1,25 @@
+<div class="wrap-routing">
+    <div class="container">
+        <div class="add-department">
+            <!-- Tên bộ phận -->
+            <div class="line">
+                <label class="label">Tên bộ phận: </label>
+                <input type="text" />
+            </div>
+
+            <!-- Ngày bắt đầu -->
+            <div class="line">
+                <label class="label">Ngày bắt đầu hoạt động: </label>
+                <input type="date" />
+            </div>
+            
+            <!-- Mô tả  -->
+            <div class="line">
+                <label class="label">Mô tả ngắn về bộ phận: </label>
+                <textarea rows="10" cols="50"></textarea>
+            </div>
+            
+            <button (click)="create()">{{ 'button.titleAddDepartment' | translate }}</button>
+        </div>
+    </div>
+</div>

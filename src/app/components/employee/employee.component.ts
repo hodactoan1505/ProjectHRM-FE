@@ -1,3 +1,4 @@
+import { ActionToken } from './../../config/action-token';
 import { error } from 'protractor';
 import { SkillResponse } from 'src/app/models/response/skill-response';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
@@ -9,12 +10,13 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { EmployeeRequest } from 'src/app/models/request/employee-request';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { ActionService } from 'src/app/services/action.service';
 import { Exception } from 'src/app/config/exception';
 import { DepartmentResponse } from 'src/app/models/response/department-response';
 import { ProjectRequest } from 'src/app/models/request/project-request';
 import { ProjectResponse } from 'src/app/models/response/project-response';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-employee',
@@ -46,13 +48,33 @@ export class EmployeeComponent implements OnInit {
     unSelectAllText: 'UnSelect All',
     allowSearchFilter: true,
   };
-
+  mySubscription : any;
   constructor(
     private employeeService : EmployeeService,
     private authService : AuthService,
     private router : Router,
-    private actionService : ActionService
-  ) { }
+    private actionService : ActionService,
+    private translate : TranslateService
+  ) { 
+    this.translate.setDefaultLang("vi");
+
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
+  }
+
+  
+  ngOnDestroy() {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
+  }
 
   ngOnInit(): void {
     this.actionService.updateLoading(true);
@@ -79,17 +101,22 @@ export class EmployeeComponent implements OnInit {
   */
   employeeRequest : EmployeeRequest = new EmployeeRequest;
   employees : EmployeeResponse[] = [];
+  isAdmin : boolean = true;
   getData() {
-    if(this.user.role.id == Constants.getRoleMemberId && this.user.role.name == Constants.getRoleMemberName) {
+    if(this.user.role.id == Constants.getRoleMemberId) {
       this.router.navigate(['error']);
       return;
     }
 
-    if(this.user.role.id == Constants.getRoleDepartmentId && this.user.role.name == Constants.getRoleDepartmentName) {
+    if(this.user.role.id == Constants.getRoleAdminId) {
+      this.isAdmin = false;
+    }
+
+    if(this.user.role.id == Constants.getRoleDepartmentId) {
       this.employeeRequest.department = [this.user.department];
     }
 
-    if(this.user.role.id == Constants.getRoleLeaderId && this.user.role.name == Constants.getRoleLeaderName) {
+    if(this.user.role.id == Constants.getRoleLeaderId) {
       this.employeeRequest.department = [this.user.department];
       this.employeeRequest.project = [this.user.project];
     }
@@ -195,8 +222,44 @@ export class EmployeeComponent implements OnInit {
     )
   }
 
+  // Khi doubleClick sẽ gọi hàm này chuyển đến trang xem chi tiết
   view(item : EmployeeRequest) {
-    console.log(item);
+    this.employeeService.updateEmployeeDetail(item);
+    ActionToken.saveEmployeeDetail(item);
+    this.router.navigate(['employee', 'view']);
   }
 
+
+  /*
+    Lấy danh sách nhân viên cần xóa
+  */ 
+  listEmployeeDelete  = [];
+  changeEmployees(value : any) {
+    this.listEmployeeDelete.push(value);
+  }
+
+
+  /*
+    Xóa danh sách nhân viên
+  */
+  deleteEmployees() {
+    this.actionService.updateLoading(true);
+    this.employeeService.deleteEmployees(this.listEmployeeDelete).subscribe(
+      (data : HttpReponse) => {
+        
+        if(data.code == Exception.success) {
+          setTimeout(() => {
+            this.actionService.updateLoading(false);
+            window.location.reload();
+          }, 2000);
+
+          
+        } 
+      },
+      (error) => {
+        this.actionService.updateMessage(error);
+        this.router.navigate(['error']);
+      }
+    )
+  }
 }

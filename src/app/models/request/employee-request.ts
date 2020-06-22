@@ -18,6 +18,6 @@ export class EmployeeRequest {
     public avatar : string = null;
     public sex : boolean = false;
     public married : boolean = false;
-    public finishTraning : string = null;
-    public joinCompany : string = null;
+    public finishTraning : string = new Date().toString();
+    public joinCompany : string = new Date().toString();
 }

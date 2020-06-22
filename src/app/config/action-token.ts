@@ -1,3 +1,4 @@
+import { EmployeeRequest } from './../models/request/employee-request';
 import { Constants } from './constants';
 import * as jwt_decode from 'jwt-decode';
 
@@ -51,4 +52,10 @@ export class ActionToken {
     public static saveLogged() {
         sessionStorage.setItem("isLogin", "true");
     }
+
+    // Lưu chi tiết hồ sơ người dùng
+    public static saveEmployeeDetail(employeeDetail : EmployeeRequest) {
+        sessionStorage.setItem("EmployeeDetail", JSON.stringify(employeeDetail));
+    }
+
 }

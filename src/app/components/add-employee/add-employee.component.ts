@@ -16,6 +16,7 @@ import { DepartmentRequest } from 'src/app/models/request/department-request';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActionService } from 'src/app/services/action.service';
 import { isBuffer } from 'util';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-employee',
@@ -48,16 +49,26 @@ export class AddEmployeeComponent implements OnInit {
     private authService : AuthService,
     private router : Router,
     private actionService : ActionService,
-    private translate : TranslateService
+    private translate : TranslateService,
+    private datePipe: DatePipe
   ) { 
     this.translate.setDefaultLang('vi');
   }
 
+  
+
   ngOnInit(): void {
     this.setRole();
     this.getSkill();
+    this.setFinishTraning();
   }
   
+  setFinishTraning() {
+    let date = new Date();
+    date.setMonth(date.getMonth() + 2);
+    this.employeeRequest.finishTraning = date.toString();
+  }
+
   /*
     Kiểm trả quyền truy cập!!
     Nếu không phải admin thì chuyển về trang lỗi
@@ -127,10 +138,13 @@ export class AddEmployeeComponent implements OnInit {
   */
   employeeRequest : EmployeeRequest = new EmployeeRequest;
   create() {
-    // // Validate
     if(this.isValidate()) {
       return;
     }
+    // Chuyển ngày về định dạng yyyy-MM-dd
+    this.employeeRequest.finishTraning = this.datePipe.transform(this.employeeRequest.finishTraning, "yyyy-MM-dd").toString();
+    this.employeeRequest.joinCompany = this.datePipe.transform(this.employeeRequest.joinCompany, "yyyy-MM-dd").toString();
+    
     this.employeeService.addEmployee(this.employeeRequest).subscribe(
       (data : HttpReponse) => {
         if(data.code == Exception.success) {
@@ -210,12 +224,27 @@ export class AddEmployeeComponent implements OnInit {
 
   /*
     Khi chọn tên bộ phận thì sẽ cập nhật lại danh sách dự án
-    Chỉ lấy những dự án trong bộ phận  
+    Chỉ lấy những dự án trong bộ phận.
+    Nếu chưa chọn bộ phận thì ko thể chọn dự án
   */
+
+  isSelectDepartment = true;
   onItemDepartmentSelect(item : any) {
+    this.isSelectDepartment = false;
     this.employeeRequest.department = [item];
     this.employeeService.getProject(this.employeeRequest).subscribe(
       (data :HttpReponse) => this.projects = data.data
     )
+  }
+
+  // Lắng nghe nếu không có chọn phòng ban thì sẽ không đươc chọn project
+  onItemDeSelect(event : any) {
+    this.isSelectDepartment = true;
+    this.employeeRequest.project = null;
+  }
+
+  // Quay lại trang danh sách nhân viên
+  exit() {
+    this.router.navigate(['employee']);
   }
 }

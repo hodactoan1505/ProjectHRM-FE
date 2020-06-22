@@ -1,0 +1,25 @@
+<div class="wrap-routing">
+    <div class="container">
+        <section class="sec-department">
+            <div class="row">
+                <div class="col-md-4" *ngFor="let item of departments">
+                    <div class="department">
+                        <h3>{{item.name}}</h3>
+                        <div class="department-row">
+                            <span class="department-title">Ngày thành lập:</span>
+                            <span class="department-content">{{ item.startdate }}</span>
+                        </div>
+                        <div class="department-row">
+                            <span class="department-title">Số thành viên:</span>
+                            <span class="department-content">{{ item.persions }}</span>
+                        </div>
+                        <div class="department-row">
+                            <span class="department-title">Mô tả:</span>
+                            <span class="department-content">{{ item.description }} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

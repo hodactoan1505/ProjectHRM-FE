@@ -38,9 +38,13 @@
             </div>
             <button class="btn-search" (click)="search()">{{ 'search.buttonSubmit' | translate }}</button>
         </section>
-        <section class="list">
-            <table style="width : 100%">
+        <section class="sec-employee">
+            <div class="wrap-action">
+                <button [hidden]="isAdmin" (click)="deleteEmployees()" [disabled]="listEmployeeDelete == null || listEmployeeDelete.length == 0">{{ 'button.titleDeleteEmployee' | translate }}</button>
+            </div>
+            <table>
                 <tr>
+                    <th class="col-check" [hidden]="isAdmin"></th>
                     <th class="col-manv">Mã nhân viên</th>
                     <th class="col-name">Họ tên</th>
                     <th class="col-skill">Kĩ năng lập trình</th>
@@ -51,8 +55,9 @@
                     <th class="col-skype">Skype</th>
                 </tr>
                 <tr *ngFor="let item of employees" (dblclick)="view(item)">
+                    <th class="col-check" [hidden]="isAdmin"><input type="checkbox" (change)="changeEmployees(item.id)" [hidden]="item.id == user.id"/></th>
                     <th class="col-manv">BRYCENVN{{ item.id }}</th>
-                    <th class="col-name"><a [routerLink]="['view',item.id]">{{ item.name }}</a></th>
+                    <th class="col-name">{{ item.name }}</th>
                     <th class="col-skill">
                         <span *ngFor="let skill of item.skills">
                             {{ skill.name }}
@@ -60,8 +65,8 @@
                     </th>
                     <th class="col-mail">{{ item.gmail }}</th>
                     <th class="col-phone">{{ item.phone }}</th>
-                    <th class="col-derpartment">{{ item.department.name }}</th>
-                    <th class="col-project">{{ (item.project != null) ?  item.project.name : ""}}</th>
+                    <th class="col-derpartment">{{ item.department[0].name }}</th>
+                    <th class="col-project">{{ (item.project != null) ?  item.project[0].name : ""}}</th>
                     <th class="col-skype">{{ item.skype }}</th>
                 </tr>
             </table>
