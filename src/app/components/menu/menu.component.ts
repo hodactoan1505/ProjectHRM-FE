@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ActionService } from 'src/app/services/action.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +15,8 @@ export class MenuComponent implements OnInit {
   menus = [];
   constructor(
     private authService : AuthService,
-    private translate : TranslateService
+    private translate : TranslateService,
+    private actionService : ActionService
   ) { 
     translate.setDefaultLang('vi');
   }
@@ -23,6 +25,12 @@ export class MenuComponent implements OnInit {
     this.authService.currenMenus.subscribe(
       (menus) => this.menus = menus
     )
+  }
+
+  // Fuction show hoặc ẩn menu => call actionService để cập nhật
+  showHideMenu() {
+    this.isShowMenu = !this.isShowMenu;
+    this.actionService.updateShowMenu(this.isShowMenu);
   }
 
 }

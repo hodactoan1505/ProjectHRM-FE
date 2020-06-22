@@ -1,12 +1,12 @@
 <div class="menu-left" [ngClass]="{'show-menu' : isShowMenu}">
-   <ul>
-      <li *ngFor="let item of menus">
-         <a [routerLink]="[item.url]" >
+   <ul class="menu-parent">
+      <li *ngFor="let item of menus" class="li-parent">
+         <a [routerLink]="[item.url]" (click)="showHideMenu()">
             <span class="icon"></span>
             <span class="menu-title">{{ item.title | translate }}</span></a>
-         <ul *ngIf="item.child">
+         <ul *ngIf="item.child" class="menu-child">
             <li *ngFor="let sub of item.child">
-               <a [routerLink]="[sub.url]" >
+               <a [routerLink]="[sub.url]" (click)="showHideMenu()">
                   <span class="icon"></span>
                   <span class="menu-title">{{ sub.title | translate }}</span></a>
             </li>

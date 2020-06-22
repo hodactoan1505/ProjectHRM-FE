@@ -1,4 +1,12 @@
 {
+    "login.username" : "Tài khoản",
+    "login.password" : "Mật khẩu",
+
+    "title.viewEmployee" : "Thông tin hồ sơ",
+    "title.addEmployee" : "Tạo mới hồ sơ",
+    "title.department" : "Danh sách phòng ban",
+    "title.addDepartment" : "Tạo mới phòng ban",
+
     "menu.dashboard" : "Trang chủ",
     "menu.profile" : "Hồ sơ cá nhân",
     "menu.employeeManager" : "Quản lý nhân viên",
@@ -23,9 +31,35 @@
     "error.messageEmployeeDepartmentEmpty" : "Chọn bộ phận nhân viên",
     "error.messageEmployeeProjectEmpty" : "Chọn dự án cho nhân viên",
 
+    "button.login" : "Đăng nhập",
     "button.titleAddEmployee" : "Tạo mới hồ sơ",
     "button.titleDeleteEmployee" : "Xóa nhân viên",
     "button.titleUpdateEmployee" : "Cập nhật",
     "button.titleAddDepartment" : "Tạo mới bộ phận",
-    "button.titleBack" : "Quay lại"
+    "button.exportFile" : "Xuất file",
+    "button.titleBack" : "Quay lại",
+
+    "group.titleInformation" : "Thông tin bản thân",
+    "group.titleInformation.name" : "Họ và tên",
+    "group.titleInformation.address" : "Địa chỉ",
+    "group.titleInformation.birthday" : "Ngày sinh",
+    "group.titleInformation.queQuan" : "Quê quán",
+    "group.titleInformation.sex" : "Giới tính",
+    "group.titleInformation.sex.male" : "Nam",
+    "group.titleInformation.sex.female" : "Nữ",
+    "group.titleInformation.married" : "Hôn nhân",
+    "group.titleInformation.married.alon" : "Độc thân",
+    "group.titleInformation.married.notAlon" : "Đã kết hôn",
+    "group.titleInformation.contact" : "Liên hệ",
+    "group.titleInformation.gmail" : "Gmail",
+    "group.titleInformation.skype" : "Skype",
+    "group.titleInformation.phone" : "Điện thoại",
+    "group.titleInformation.personalSkills" : "Kĩ năng bản thân",
+    "group.titleInformation.programmingLanguage" : "Ngôn ngữ lập trình",
+    "group.titleInformation.file" : "Hồ sơ",
+    "group.titleInformation.department" : "Bộ phận",
+    "group.titleInformation.project" : "Dự án đang tham gia",
+    "group.titleInformation.finishTraning" : "Ngày hết hạn thử việc",
+    "group.titleInformation.joinCompany" : "Ngày vào công ty"
+
 } 

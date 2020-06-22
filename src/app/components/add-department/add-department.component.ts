@@ -14,4 +14,6 @@ export class AddDepartmentComponent implements OnInit {
   create() {
     
   }
+
+  exit() {}
 }

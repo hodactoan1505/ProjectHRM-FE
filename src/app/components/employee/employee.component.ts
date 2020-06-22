@@ -1,3 +1,4 @@
+import { SkillRequest } from './../../models/request/skill-request';
 import { ActionToken } from './../../config/action-token';
 import { error } from 'protractor';
 import { SkillResponse } from 'src/app/models/response/skill-response';
@@ -135,6 +136,10 @@ export class EmployeeComponent implements OnInit {
      );
   }
 
+  searchSkill(item : SkillRequest) {
+    this.employeeRequest.skills = [item];
+    this.search();
+  }
 
   /*
     Lấy danh sách bộ phận

@@ -1,25 +1,30 @@
 <div class="wrap-routing">
     <div class="container">
         <div class="add-department">
-            <!-- Tên bộ phận -->
-            <div class="line">
-                <label class="label">Tên bộ phận: </label>
-                <input type="text" />
-            </div>
+            <h2 class="title-component">{{ 'title.department' | translate }}</h2>
+            <div class="wrap-deparment">
+                <!-- Tên bộ phận -->
+                <div class="line">
+                    <label class="label">Tên bộ phận: </label>
+                    <input type="text"  class="input"/>
+                </div>
 
-            <!-- Ngày bắt đầu -->
-            <div class="line">
-                <label class="label">Ngày bắt đầu hoạt động: </label>
-                <input type="date" />
+                <!-- Ngày bắt đầu -->
+                <div class="line">
+                    <label class="label">Ngày bắt đầu hoạt động: </label>
+                    <input type="date" class="input"/>
+                </div>
+                
+                <!-- Mô tả  -->
+                <div class="line">
+                    <label class="label">Mô tả ngắn về bộ phận: </label>
+                    <textarea rows="10" cols="50" class="input"></textarea>
+                </div>
+                <div class="wrap-action">
+                    <button (click)="create()">{{ 'button.titleAddDepartment' | translate }}</button>
+                    <button (click)="exit()">{{ 'button.titleBack' | translate }}</button>
+                </div>
             </div>
-            
-            <!-- Mô tả  -->
-            <div class="line">
-                <label class="label">Mô tả ngắn về bộ phận: </label>
-                <textarea rows="10" cols="50"></textarea>
-            </div>
-            
-            <button (click)="create()">{{ 'button.titleAddDepartment' | translate }}</button>
         </div>
     </div>
 </div>

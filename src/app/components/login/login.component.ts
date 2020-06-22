@@ -1,3 +1,4 @@
+import { error } from 'protractor';
 import { ActionToken } from './../../config/action-token';
 import { Router } from '@angular/router';
 import { HttpReponse } from './../../models/response/http-reponse';
@@ -9,6 +10,7 @@ import { MessageException } from 'src/app/config/message-exception';
 import { Constants } from 'src/app/config/constants';
 import * as jwt_decode from 'jwt-decode';
 import { ActionService } from 'src/app/services/action.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -18,14 +20,15 @@ import { ActionService } from 'src/app/services/action.service';
 export class LoginComponent implements OnInit {
 
   userRequest : UserRequest = new UserRequest;
-
-  message : string;
   
   constructor(
     private authService : AuthService,
     private router : Router,
-    private actionServive : ActionService
-  ) { }
+    private actionServive : ActionService,
+    private translate : TranslateService
+  ) {
+    this.translate.setDefaultLang("vi");
+   }
 
   ngOnInit(): void {
   }
@@ -44,7 +47,8 @@ export class LoginComponent implements OnInit {
         */ 
         if(data.code == Exception.loginFail) {
           if(data.message === Constants.badCredentials) {
-            this.message = MessageException.messageLoginFail;
+            this.actionServive.updateMessage(MessageException.messageLoginFail);
+            this.actionServive.updateLoading(false);
             return;
           }
         }
@@ -79,7 +83,7 @@ export class LoginComponent implements OnInit {
 
       },
       (error) => {
-        this.message = error.status;
+        this.actionServive.updateMessage(error.message)
       }
     );
   }

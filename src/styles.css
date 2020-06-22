@@ -25,4 +25,16 @@ img {
 }
 table {
     width: 100%;
+    display: block;
+    overflow: scroll;
+    white-space: nowrap;
 }
+
+input:focus {
+    outline: none;
+}
+
+.dropdown-btn:focus {
+    outline: none;
+}
+

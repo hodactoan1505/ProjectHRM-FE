@@ -56,7 +56,6 @@ export class ViewEmployeeComponent implements OnInit {
     private router : Router,
     private actionService : ActionService,
     private translate : TranslateService,
-    private activatedRoute: ActivatedRoute,
     private datePipe : DatePipe
   ) { 
     this.translate.setDefaultLang("vi");
@@ -196,9 +195,17 @@ export class ViewEmployeeComponent implements OnInit {
       return;
     }
     
-    // this.employeeRequest.finishTraning = this.datePipe.transform(this.employeeRequest.finishTraning, "yyyy-MM-dd").toString();
-    // this.employeeRequest.joinCompany = this.datePipe.transform(this.employeeRequest.joinCompany, "yyyy-MM-dd").toString();
-    this.employeeRequest.birthday = this.datePipe.transform(this.employeeRequest.birthday, "yyyy-MM-dd").toString();
+    // if(this.employeeRequest.finishTraning!= null || this.employeeRequest.finishTraning.trim() != "") {
+    //   this.employeeRequest.finishTraning = this.datePipe.transform(this.employeeRequest.finishTraning, "yyyy-MM-dd").toString();
+    // }
+
+    // if(this.employeeRequest.joinCompany!= null || this.employeeRequest.joinCompany.trim() != "") {
+    //   this.employeeRequest.joinCompany = this.datePipe.transform(this.employeeRequest.joinCompany, "yyyy-MM-dd").toString();
+    // }
+    // if(this.employeeRequest.birthday != null || this.employeeRequest.birthday.trim() != "") {
+    //   this.employeeRequest.birthday = this.datePipe.transform(this.employeeRequest.birthday, "yyyy-MM-dd").toString();
+    // }
+    
 
     this.employeeService.updateEmployee(this.employeeRequest).subscribe(
       (data : HttpReponse) => {

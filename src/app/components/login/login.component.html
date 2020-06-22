@@ -1,12 +1,12 @@
 <div id="login">
-    <div class="form">
-        <div class="group-line">
-            <input placeholder="username" type="text" [(ngModel)]="userRequest.username"/>
-        </div>
-        <div class="group-line">
-            <input placeholder="password" type="password" [(ngModel)]="userRequest.password"/>
-        </div>
-        <button class="btn-login" (click)="login()">Login</button>
-        <div>{{ message }}</div>
+    <div class="thumb">
+        <img src="../../../assets/images/logo.png" />
     </div>
+    <div class="group-line">
+        <input placeholder="{{ 'login.username' | translate }}" type="text" [(ngModel)]="userRequest.username"/>
+    </div>
+    <div class="group-line">
+        <input placeholder="{{ 'login.password' | translate }}" type="password" [(ngModel)]="userRequest.password"/>
+    </div>
+    <div class="group-line"><button class="btn-login" (click)="login()">{{ 'button.login' | translate }}</button></div>
 </div>

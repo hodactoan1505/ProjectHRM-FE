@@ -1,117 +1,136 @@
-<div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="group">
-                    <p class="head-title">Thông tin bản thân</p>
-                    <!-- Thông tin họ và tên -->
-                    <div class="line">
-                        <label class="label">Họ và tên: </label>
-                        <input type="text" class="input" [(ngModel)]="employeeRequest.name" [ngClass]="{'error-validate': nameValidate}"/>
+<div class="wrap-routing">
+    <div class="content">
+        <div class="container">
+            <h2 class="title-component">{{ 'title.addEmployee' | translate }}</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="group">
+                        <p class="head-title">{{'group.titleInformation' | translate }}</p>
+                        <!-- Thông tin họ và tên -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.name' | translate }}</label>
+                            <input type="text" class="input" [(ngModel)]="employeeRequest.name" [ngClass]="{'error-validate': nameValidate}"/>
+                        </div>
+                        <!-- Thông tin địa chỉ -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.address' | translate }}</label>
+                            <input type="text" class="input" [(ngModel)]="employeeRequest.address"/>
+                        </div>
+                        <!-- Thông tin ngày sinh -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.birthday' | translate }}</label>
+                            <input type="date" class="input"
+                            [ngModel]="employeeRequest.birthday | date : 'yyyy-MM-dd'" 
+                            (ngModelChange)="employeeRequest.birthday = $event" 
+                            [value]="employeeRequest.birthday | date:'yyyy-MM-dd'"/>
+                        </div>
+                        <!-- Thông tin quê quán -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.queQuan' | translate }}</label>
+                            <input type="text" class="input" [(ngModel)]="employeeRequest.queQuan"/>
+                        </div>
+                        <!-- Thông tin giới tính -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.sex' | translate }}</label>
+                            <input type="radio" name="sex" [value]="true"  [(ngModel)]="employeeRequest.sex" class="lb-radio"/><label>{{'group.titleInformation.sex.male' | translate }}</label>
+                            <input type="radio" name="sex" [value]="false"  [(ngModel)]="employeeRequest.sex" class="lb-radio"/><label for="female">{{'group.titleInformation.sex.female' | translate }}</label>
+                        </div>
+                        <!-- Thông tin tình trạng hôn nhân -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.married' | translate }} </label>
+                            <input type="radio" [value]="false"  [(ngModel)]="employeeRequest.married" name="married" /><label for="">{{'group.titleInformation.married.alon' | translate }}</label>
+                            <input type="radio" [value]="true" [(ngModel)]="employeeRequest.married" name="married"/><label for="">{{'group.titleInformation.married.notAlon' | translate }}</label>
+                        </div>
                     </div>
-                    <!-- Thông tin địa chỉ -->
-                    <div class="line">
-                        <label class="label">Địa chỉ: </label>
-                        <input type="text" class="input" [(ngModel)]="employeeRequest.address"/>
+                </div>
+                <div class="col-md-4">
+                    <div class="group">
+                        <p class="head-title">{{'group.titleInformation.contact' | translate }}</p>
+                        <!-- Thông tin mail -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.gmail' | translate }}</label>
+                            <input type="text" class="input" [(ngModel)]="employeeRequest.gmail"/>
+                        </div>
+                        <!-- Thông tin skype -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.skype' | translate }}</label>
+                            <input type="text" class="input" [(ngModel)]="employeeRequest.skype"/>
+                        </div>
+                        <!-- Thông tin điện thoại -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.phone' | translate }}</label>
+                            <input type="text" class="input" [(ngModel)]="employeeRequest.phone"/>
+                        </div>
                     </div>
-                    <!-- Thông tin ngày sinh -->
-                    <div class="line">
-                        <label class="label">Ngày sinh: </label>
-                        <input type="date" [ngModel]="employeeRequest.birthday | date : 'yyyy-MM-dd'" (ngModelChange)="employeeRequest.birthday = $event" [value]="employeeRequest.birthday | date:'yyyy-MM-dd'"/>
+                    <div class="group width">
+                        <p class="head-title">{{'group.titleInformation.personalSkills' | translate }}</p>
+                        <!-- Thông tin kĩ năng lập trình -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.programmingLanguage' | translate }}</label>
+                            <ng-multiselect-dropdown 
+                            [data]="skills" #multiSelect 
+                            [settings]="SettingsMultiple"
+                            [(ngModel)]="employeeRequest.skills"
+                            [ngClass]="{'error-validate-dropdown': skillValidate}"></ng-multiselect-dropdown>
+                        </div>
                     </div>
-                    <!-- Thông tin quê quán -->
-                    <div class="line">
-                        <label class="label">Quê quán: </label>
-                        <input type="text" class="input" [(ngModel)]="employeeRequest.queQuan"/>
-                    </div>
-                    <!-- Thông tin giới tính -->
-                    <div class="line">
-                        <label class="label">Giới tính: </label>
-                        <input type="radio" name="sex" [value]="true"  [(ngModel)]="employeeRequest.sex" class="lb-radio"/><label>Nam</label>
-                        <input type="radio" name="sex" [value]="false"  [(ngModel)]="employeeRequest.sex" class="lb-radio"/><label for="female">Nữ</label>
-                    </div>
-                    <!-- Thông tin tình trạng hôn nhân -->
-                    <div class="line">
-                        <label class="label">Tình trạng hôn nhân: </label>
-                        <input type="radio" [value]="false"  [(ngModel)]="employeeRequest.married" name="married" /><label for="">Độc thân</label>
-                        <input type="radio" [value]="true" [(ngModel)]="employeeRequest.married" name="married"/><label for="">Đã kết hôn</label>
+                </div>
+                <div class="col-md-4">
+                    <div class="group width">
+                        <p class="head-title">{{'group.titleInformation.file' | translate }}</p>
+                        <!-- Thông tin avatar -->
+                        <div class="line">
+                            <div class="wrap-avatar">
+                                <img [src]='employeeRequest.avatar' />
+                            </div>
+                            <input type="file" (change)="handleFileSelect($event)" accept="image/x-png, image/jpeg"/>
+                        </div>
+                        <!-- Thông tin bộ phận -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.department' | translate }}</label>
+                            <ng-multiselect-dropdown 
+                            [data]="departments" 
+                            [settings]="SettingsSingle"
+                            [(ngModel)]="employeeRequest.department"
+                            (onSelect)="onItemDepartmentSelect($event)"
+                            [ngClass]="{'error-validate-dropdown': departmentValidate}"
+                            (onDeSelect)="onItemDeSelect($event)"></ng-multiselect-dropdown>
+                        </div>
+        
+                        <!-- Thông tin dự án -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.project' | translate }}</label>
+                            <ng-multiselect-dropdown 
+                            [data]="projects" 
+                            [settings]="SettingsSingle"
+                            [(ngModel)]="employeeRequest.project"
+                            [ngClass]="{'error-validate-dropdown': projectValidate}"
+                            [disabled]="isSelectDepartment"></ng-multiselect-dropdown>
+                        </div>
+                        <!-- Thông tin hết hạn thử việc -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.finishTraning' | translate }} </label>
+                            <input type="date" class="input"
+                            [ngModel]="employeeRequest.finishTraning | date : 'yyyy-MM-dd'" 
+                            (ngModelChange)="employeeRequest.finishTraning = $event" 
+                            [value]="employeeRequest.finishTraning | date:'yyyy-MM-dd'"/>
+                        </div> 
+                        <!-- Thông tin ngày vào công ty -->
+                        <div class="line">
+                            <label class="label">{{'group.titleInformation.joinCompany' | translate }}</label>
+                            <input type="date" class="input"
+                            [ngModel]="employeeRequest.joinCompany | date : 'yyyy-MM-dd'" 
+                            (ngModelChange)="employeeRequest.joinCompany = $event" 
+                            [value]="employeeRequest.joinCompany | date:'yyyy-MM-dd'"/>
+                        </div> 
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <p class="head-title">Liên hệ</p>
-                <!-- Thông tin mail -->
-                <div class="line">
-                    <label class="label">Gmail: </label>
-                    <input type="text" class="input" [(ngModel)]="employeeRequest.gmail"/>
-                </div>
-                <!-- Thông tin skype -->
-                <div class="line">
-                    <label class="label">Skype: </label>
-                    <input type="text" class="input" [(ngModel)]="employeeRequest.skype"/>
-                </div>
-                <!-- Thông tin điện thoại -->
-                <div class="line">
-                    <label class="label">Phone: </label>
-                    <input type="text" class="input" [(ngModel)]="employeeRequest.phone"/>
-                </div>
-                <p class="head-title">Kĩ năng bản thân</p>
-                <!-- Thông tin kĩ năng lập trình -->
-                <div class="line">
-                    <label class="label">Ngôn ngữ lập trình:</label>
-                    <ng-multiselect-dropdown 
-                    [data]="skills" #multiSelect 
-                    [settings]="SettingsMultiple"
-                    [(ngModel)]="employeeRequest.skills"
-                    [ngClass]="{'error-validate-dropdown': skillValidate}"></ng-multiselect-dropdown>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <p class="head-title">Hồ sơ</p>
-                <!-- Thông tin avatar -->
-                <div class="line">
-                    <div class="wrap-avatar">
-                        <img [src]='employeeRequest.avatar' />
-                    </div>
-                    <input type="file" (change)="handleFileSelect($event)" accept="image/x-png, image/jpeg"/>
-                </div>
-                <!-- Thông tin bộ phận -->
-                <div class="line">
-                    <label class="label">Bộ phận</label>
-                    <ng-multiselect-dropdown 
-                    [data]="departments" 
-                    [settings]="SettingsSingle"
-                    [(ngModel)]="employeeRequest.department"
-                    (onSelect)="onItemDepartmentSelect($event)"
-                    [ngClass]="{'error-validate-dropdown': departmentValidate}"
-                    (onDeSelect)="onItemDeSelect($event)"></ng-multiselect-dropdown>
-                </div>
-
-                <!-- Thông tin dự án -->
-                <div class="line">
-                    <label class="label">Dự án đang tham gia</label>
-                    <ng-multiselect-dropdown 
-                    [data]="projects" 
-                    [settings]="SettingsSingle"
-                    [(ngModel)]="employeeRequest.project"
-                    [ngClass]="{'error-validate-dropdown': projectValidate}"
-                    [disabled]="isSelectDepartment"></ng-multiselect-dropdown>
-                </div>
-                <!-- Thông tin hết hạn thử việc -->
-                <div class="line">
-                    <label class="label">Ngày hết thử việc: </label>
-                    <input type="date" [ngModel]="employeeRequest.finishTraning | date : 'yyyy-MM-dd'" (ngModelChange)="employeeRequest.finishTraning = $event" [value]="employeeRequest.finishTraning | date:'yyyy-MM-dd'"/>
-                </div> 
-                <!-- Thông tin ngày vào công ty -->
-                <div class="line">
-                    <label class="label">Ngày vào công ty: </label>
-                    <input type="date" [ngModel]="employeeRequest.joinCompany | date : 'yyyy-MM-dd'" (ngModelChange)="employeeRequest.joinCompany = $event" [value]="employeeRequest.joinCompany | date:'yyyy-MM-dd'"/>
-                </div> 
+            <div class="wrap-action">
+                <button (click)="create()">{{ 'button.titleAddEmployee' | translate }}</button>
+                <button (click)="exit()">{{ 'button.titleBack' | translate }}</button>
             </div>
         </div>
-        <button (click)="create()">{{ 'button.titleAddEmployee' | translate }}</button>
-        <button (click)="exit()">{{ 'button.titleBack' | translate }}</button>
     </div>
 </div>
-
 

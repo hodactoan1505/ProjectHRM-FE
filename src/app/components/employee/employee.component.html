@@ -1,49 +1,57 @@
 <div class="wrap-routing">
     <div class="container-fluid ">
         <section class="search">
-            <div class="row">
-                <!-- Tìm kiếm theo tên -->
-                <div class="col-md-3">
-                    <label class="label">{{ 'search.name' | translate }}</label>
-                    <input type="text" [(ngModel)]="employeeRequest.name">
+            <div class="wrap-search">
+                <div class="row">
+                    <!-- Tìm kiếm theo tên -->
+                    <div class="col-md-3">
+                        <label class="label">{{ 'search.name' | translate }}</label>
+                        <input type="text" [(ngModel)]="employeeRequest.name">
+                    </div>
+    
+                    <!-- Department -->
+                    <div class="col-md-2">
+                        <label class="label">{{ 'search.department' | translate }}:</label>
+                        <ng-multiselect-dropdown 
+                        [data]="departments"
+                        [settings]="SettingsSingle"
+                        [(ngModel)]="employeeRequest.department"
+                        (onSelect)="onItemDepartmentSelect($event)"></ng-multiselect-dropdown>
+                    </div>
+    
+                    <!-- Project-->
+                    <div class="col-md-2">
+                        <label class="label">{{ 'search.project' | translate }}</label>
+                        <ng-multiselect-dropdown 
+                        [data]="projects"
+                        [settings]="SettingsSingle"
+                        [(ngModel)]="employeeRequest.project"></ng-multiselect-dropdown>
+                    </div>
+    
+                    <!-- Skills-->
+                    <div class="col-md-3">
+                        <label class="label">{{ 'search.skill' | translate }}</label>
+                        <ng-multiselect-dropdown 
+                        [data]="skills"
+                        [settings]="SettingsMultiple"
+                        [(ngModel)]="employeeRequest.skills"></ng-multiselect-dropdown>
+                    </div>  
+                    
+                    <div class="col-md-2">
+                        <button class="btn-search" (click)="search()">{{ 'search.buttonSubmit' | translate }}</button>
+                    </div>
                 </div>
-
-                <!-- Department -->
-                <div class="col-md-3">
-                    <label class="label">{{ 'search.department' | translate }}:</label>
-                    <ng-multiselect-dropdown 
-                    [data]="departments"
-                    [settings]="SettingsSingle"
-                    [(ngModel)]="employeeRequest.department"
-                    (onSelect)="onItemDepartmentSelect($event)"></ng-multiselect-dropdown>
-                </div>
-
-                <!-- Project-->
-                <div class="col-md-3">
-                    <label class="label">{{ 'search.project' | translate }}</label>
-                    <ng-multiselect-dropdown 
-                    [data]="projects"
-                    [settings]="SettingsSingle"
-                    [(ngModel)]="employeeRequest.project"></ng-multiselect-dropdown>
-                </div>
-
-                <!-- Skills-->
-                <div class="col-md-3">
-                    <label class="label">{{ 'search.skill' | translate }}</label>
-                    <ng-multiselect-dropdown 
-                    [data]="skills"
-                    [settings]="SettingsMultiple"
-                    [(ngModel)]="employeeRequest.skills"></ng-multiselect-dropdown>
-                </div>                
+                
             </div>
-            <button class="btn-search" (click)="search()">{{ 'search.buttonSubmit' | translate }}</button>
+
         </section>
         <section class="sec-employee">
             <div class="wrap-action">
                 <button [hidden]="isAdmin" (click)="deleteEmployees()" [disabled]="listEmployeeDelete == null || listEmployeeDelete.length == 0">{{ 'button.titleDeleteEmployee' | translate }}</button>
+                <button>{{ 'button.exportFile' | translate }}</button>
             </div>
             <table>
-                <tr>
+                <tr class="head-table">
                     <th class="col-check" [hidden]="isAdmin"></th>
                     <th class="col-manv">Mã nhân viên</th>
                     <th class="col-name">Họ tên</th>
@@ -54,20 +62,20 @@
                     <th class="col-project">Dự án đang làm</th>
                     <th class="col-skype">Skype</th>
                 </tr>
-                <tr *ngFor="let item of employees" (dblclick)="view(item)">
-                    <th class="col-check" [hidden]="isAdmin"><input type="checkbox" (change)="changeEmployees(item.id)" [hidden]="item.id == user.id"/></th>
-                    <th class="col-manv">BRYCENVN{{ item.id }}</th>
-                    <th class="col-name">{{ item.name }}</th>
-                    <th class="col-skill">
-                        <span *ngFor="let skill of item.skills">
+                <tr *ngFor="let item of employees" (dblclick)="view(item)" class="employee">
+                    <td class="col-check" [hidden]="isAdmin"><input type="checkbox" (change)="changeEmployees(item.id)" [hidden]="item.id == user.id"/></td>
+                    <td class="col-manv">BRYCENVN{{ item.id }}</td>
+                    <td class="col-name">{{ item.name }}</td>
+                    <td class="col-skill">
+                        <span *ngFor="let skill of item.skills" (click)="searchSkill(skill)">
                             {{ skill.name }}
                         </span>                        
-                    </th>
-                    <th class="col-mail">{{ item.gmail }}</th>
-                    <th class="col-phone">{{ item.phone }}</th>
-                    <th class="col-derpartment">{{ item.department[0].name }}</th>
-                    <th class="col-project">{{ (item.project != null) ?  item.project[0].name : ""}}</th>
-                    <th class="col-skype">{{ item.skype }}</th>
+                    </td>
+                    <td class="col-mail">{{ item.gmail }}</td>
+                    <td class="col-phone">{{ item.phone }}</td>
+                    <td class="col-derpartment">{{ item.department[0].name }}</td>
+                    <td class="col-project">{{ (item.project != null) ?  item.project[0].name : ""}}</td>
+                    <td class="col-skype">{{ item.skype }}</td>
                 </tr>
             </table>
         </section>
