@@ -1,3 +1,4 @@
+import { DepartmentRequest } from 'src/app/models/request/department-request';
 import { AuthService } from 'src/app/services/auth.service';
 import { Constants } from './../config/constants';
 import { EmployeeRequest } from './../models/request/employee-request';
@@ -88,4 +89,14 @@ export class EmployeeService {
     return this.http.delete(Constants.baseURL + "/employee/delete", options).pipe();
   }
 
+
+  // Thêm mới bộ phận
+  addDepartment(departmentRequest : DepartmentRequest) {
+    return this.http.post(Constants.baseURL + "/department/add", departmentRequest).pipe();
+  }
+
+  // Cập nhật bộ phận
+  updateDepartment(departmentRequest : DepartmentRequest) {
+    return this.http.put(Constants.baseURL + "/department/update", departmentRequest).pipe();
+  }
 }

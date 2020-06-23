@@ -1,3 +1,4 @@
+import { ViewDepartmentComponent } from './components/view-department/view-department.component';
 import { AddDepartmentComponent } from './components/add-department/add-department.component';
 import { DepartmentComponent } from './components/department/department.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
@@ -10,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthService } from './services/auth.service';
 import { ViewEmployeeComponent } from './components/view-employee/view-employee.component';
 import { ProjectComponent } from './components/project/project.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [
@@ -22,7 +24,9 @@ const routes: Routes = [
   { path: "employee/view", component: ViewEmployeeComponent, canActivate: [AuthService]},
   { path: "department", component: DepartmentComponent, canActivate: [AuthService]},
   { path: "department/add", component: AddDepartmentComponent, canActivate: [AuthService]},
-  { path: "project", component: ProjectComponent, canActivate: [AuthService]}
+  { path: "department/view/:id", component: ViewDepartmentComponent, canActivate: [AuthService]},
+  { path: "project", component: ProjectComponent, canActivate: [AuthService]},
+  { path: "profile", component: ProfileComponent, canActivate: [AuthService]}
 ];
 
 @NgModule({

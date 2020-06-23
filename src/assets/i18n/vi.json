@@ -1,11 +1,20 @@
-{
-    "login.username" : "Tài khoản",
-    "login.password" : "Mật khẩu",
+{   
+    "dashboard" : {
+        "welcome" : "Chào mừng bạn đến với hệ thống"
+    },
+
+    "login" : {
+        "username" : "Tài khoản",
+        "password" : "Mật khẩu"
+    },
 
     "title.viewEmployee" : "Thông tin hồ sơ",
     "title.addEmployee" : "Tạo mới hồ sơ",
     "title.department" : "Danh sách phòng ban",
     "title.addDepartment" : "Tạo mới phòng ban",
+    "title.updateDepartment" : "Hồ sơ phòng ban",
+    "title.lastNews" : "Tin tức mới nhất",
+    "title.viewAllNew" : "Xem tất cả",
 
     "menu.dashboard" : "Trang chủ",
     "menu.profile" : "Hồ sơ cá nhân",
@@ -15,27 +24,36 @@
     "mennu.projectManager" : "Quản lý dự án",
     "menu.systemManager" : "Quản lý hệ thống",
     "menu.addDepartmentManager" : "Tạo mới bộ phận",
+    "mennu.addProject" : "Tạo mới dự án",
+    "menu.logManager" : "Quản lý log",
+    "menu.accountManager" : "Quản lý tài khoản",
 
     "header.hello" : "Xin chào",
     "header.logout" : "Đăng xuất",
 
+    "search" : {
+        "name" : "Tìm theo tên",
+        "department" : "Tìm theo bộ phận",
+        "project" : "Tìm theo dự án",
+        "skill" : "Tìm theo kĩ năng",
+        "buttonSubmit" : "Tìm kiếm",
+        "startdate" : "Ngày bắt đầu",
+        "enddate" : "Ngày kết thúc"
+    },
 
-    "search.name" : "Tìm theo tên",
-    "search.department" : "Tìm theo bộ phận",
-    "search.project" : "Tìm theo dự án",
-    "search.skill" : "Tìm theo kĩ năng",
-    "search.buttonSubmit" : "Tìm kiếm",
 
 
     "error.messageEmployeeSkillEmpty" : "Cần có ít nhất 1 kĩ năng",
     "error.messageEmployeeDepartmentEmpty" : "Chọn bộ phận nhân viên",
     "error.messageEmployeeProjectEmpty" : "Chọn dự án cho nhân viên",
+    "error.message.nameEmpty" : "Tên không được để trống",
+    "error.message.startDateEmpty" : "Ngày bắt đầu không được để trống",
+    "error.message.duplicateName" : "Tên đã tồn tại",
 
     "button.login" : "Đăng nhập",
-    "button.titleAddEmployee" : "Tạo mới hồ sơ",
-    "button.titleDeleteEmployee" : "Xóa nhân viên",
-    "button.titleUpdateEmployee" : "Cập nhật",
-    "button.titleAddDepartment" : "Tạo mới bộ phận",
+    "button.titleAdd" : "Tạo mới",
+    "button.titleDelete" : "Xóa mục đã chọn",
+    "button.titleUpdate" : "Cập nhật",
     "button.exportFile" : "Xuất file",
     "button.titleBack" : "Quay lại",
 
@@ -60,6 +78,20 @@
     "group.titleInformation.department" : "Bộ phận",
     "group.titleInformation.project" : "Dự án đang tham gia",
     "group.titleInformation.finishTraning" : "Ngày hết hạn thử việc",
-    "group.titleInformation.joinCompany" : "Ngày vào công ty"
+    "group.titleInformation.joinCompany" : "Ngày vào công ty",
 
+    "addDepartment.title" : "Tên bộ phận",
+    "addDepartment.startdate" : "Ngày bắt đầu hoạt động",
+    "addDepartment.description" : "Mô tả ngắn về bộ phận",
+
+
+    "viewProject" : {
+        "id" : "Mã dự án",
+        "name" : "Tên dự án",
+        "startdate" : "Ngày bắt đầu",
+        "enddate" : "Ngày kết thúc",
+        "persion" : "Nhân viên",
+        "department" : "Bộ phận",
+        "description" : "Mô tả"
+    } 
 } 

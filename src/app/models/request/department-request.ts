@@ -1,7 +1,7 @@
 export class DepartmentRequest {
-    public id : number;
-    public name : string;
-    public description : string;
-    public persions : number;
-    public startdate : string;
+    public id : number = null;
+    public name : string = null;
+    public description : string = null;
+    public persions : number = null;
+    public startdate : string = null;
 }

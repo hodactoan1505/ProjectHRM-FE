@@ -1,1 +1,66 @@
-<p>project works!</p>
+<div class="wrap-routing">
+    <div class="container-fluid ">
+        <section class="search">
+            <div class="wrap-search">
+                <div class="row">
+                    <!-- Tìm kiếm theo tên -->
+                    <div class="col-md-2">
+                        <label class="label">{{ 'search.name' | translate }}</label>
+                        <input type="text" [(ngModel)]="employeeRequest.name">
+                    </div>
+    
+                    <!-- Department -->
+                    <div class="col-md-2">
+                        <label class="label">{{ 'search.department' | translate }}:</label>
+                        <ng-multiselect-dropdown 
+                        [data]="departments"
+                        [settings]="SettingsSingle"
+                        [(ngModel)]="employeeRequest.department"
+                        (onSelect)="onItemDepartmentSelect($event)"></ng-multiselect-dropdown>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="label">{{ 'search.startdate' | translate }}</label>
+                        <input type="date">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="label">{{ 'search.enddate' | translate }}</label>
+                        <input type="date">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn-search" (click)="search()">{{ 'search.buttonSubmit' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sec-project">
+            <div class="wrap-action">
+                <button [hidden]="isAdmin" 
+                    (click)="deleteProjects()" 
+                    [disabled]="listProjectDelete == null || listProjectDelete.length == 0">{{ 'button.titleDelete' | translate }}</button>
+                <button>{{ 'button.exportFile' | translate }}</button>
+            </div>
+            <table>
+                <tr class="head-table">
+                    <th class="col-check" [hidden]="isAdmin"></th>
+                    <th class="col-project-id">{{ 'viewProject.id' | translate }}</th>
+                    <th class="col-project-name">{{ 'viewProject.name' | translate }}</th>
+                    <th class="col-startdate">{{ 'viewProject.startdate' | translate }}</th>
+                    <th class="col-enddate">{{ 'viewProject.enddate' | translate }}</th>
+                    <th class="col-persion">{{ 'viewProject.persion' | translate }}</th>
+                    <th class="col-derpartment">{{ 'viewProject.department' | translate }}</th>
+                    <th class="col-description">{{ 'viewProject.description' | translate }}</th>
+                </tr>
+                <tr *ngFor="let item of projects" (dblclick)="view(item)" class="project">
+                    <td class="col-check" [hidden]="isAdmin"><input type="checkbox" (change)="changeProject(item.id)"/></td>
+                    <td class="col-project-id">Project-{{ item.id }}</td>
+                    <td class="col-project-name">{{ item.name }}</td>
+                    <td class="col-startdate">{{ item.startdate }}</td>
+                    <td class="col-enddate">{{ item.enddate }}</td>
+                    <td class="col-persion">{{ item.persion }}</td>
+                    <td class="col-derpartment">{{ item.department.name }}</td>
+                    <td class="col-description">{{ item.description }}</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+</div>

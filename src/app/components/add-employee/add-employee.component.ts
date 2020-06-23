@@ -25,6 +25,9 @@ import { DatePipe } from '@angular/common';
 })
 export class AddEmployeeComponent implements OnInit {
 
+  // Hình mặc định
+  src="../../../assets/images/avatar.jpg";
+
   // Setting cho các dropdownBox của toàn bộ trang
   SettingsMultiple:IDropdownSettings = {
     singleSelection: false,

@@ -81,7 +81,7 @@
                         <!-- Thông tin avatar -->
                         <div class="line">
                             <div class="wrap-avatar">
-                                <img [src]='employeeRequest.avatar' />
+                                <img [src]='(employeeRequest.avatar) ? employeeRequest.avatar : src' />
                             </div>
                             <input type="file" (change)="handleFileSelect($event)" accept="image/x-png, image/jpeg"/>
                         </div>
@@ -127,7 +127,7 @@
                 </div>
             </div>
             <div class="wrap-action">
-                <button (click)="create()">{{ 'button.titleAddEmployee' | translate }}</button>
+                <button (click)="create()">{{ 'button.titleAdd' | translate }}</button>
                 <button (click)="exit()">{{ 'button.titleBack' | translate }}</button>
             </div>
         </div>

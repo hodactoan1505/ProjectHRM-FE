@@ -60,4 +60,7 @@ export class DepartmentComponent implements OnInit {
     )
   }
 
+  view(id : number) {
+    this.router.navigate(['department','view', id]);
+  }
 }

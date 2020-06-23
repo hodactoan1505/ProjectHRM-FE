@@ -13,4 +13,13 @@ export class MessageException {
 
     // Thông báo khi chưa chọn dự án
     public static get messageEmployeeProjectEmpty() : string { return "error.messageEmployeeProjectEmpty"; }
+
+    // Thông báo khi chưa điền trường name
+    public static get messageNameEmpty() : string { return "error.message.nameEmpty"; }
+
+    // Thông báo khi chưa điền trường ngày bắt đầu
+    public static get messageStartDateEmpty() : string { return "error.message.startDateEmpty"; }
+
+    // Thông báo khi trường tên đã tồn tại
+    public static get messageNameAlreadyExist() : string { return "error.message.duplicateName"; }
 } 

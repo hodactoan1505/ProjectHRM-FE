@@ -49,6 +49,7 @@ export class EmployeeComponent implements OnInit {
     unSelectAllText: 'UnSelect All',
     allowSearchFilter: true,
   };
+  
   mySubscription : any;
   constructor(
     private employeeService : EmployeeService,
@@ -202,6 +203,7 @@ export class EmployeeComponent implements OnInit {
   employeeSearch : EmployeeRequest = new EmployeeRequest;
   
   search() {
+    console.log(this.employeeRequest);
     this.actionService.updateLoading(true);
     this.employeeService.getEmployee(this.employeeRequest).subscribe(
       (data : HttpReponse) => {

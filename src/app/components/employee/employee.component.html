@@ -47,7 +47,9 @@
         </section>
         <section class="sec-employee">
             <div class="wrap-action">
-                <button [hidden]="isAdmin" (click)="deleteEmployees()" [disabled]="listEmployeeDelete == null || listEmployeeDelete.length == 0">{{ 'button.titleDeleteEmployee' | translate }}</button>
+                <button [hidden]="isAdmin" 
+                    (click)="deleteEmployees()" 
+                    [disabled]="listEmployeeDelete == null || listEmployeeDelete.length == 0">{{ 'button.titleDelete' | translate }}</button>
                 <button>{{ 'button.exportFile' | translate }}</button>
             </div>
             <table>

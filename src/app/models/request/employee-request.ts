@@ -3,7 +3,7 @@ import { DepartmentRequest } from './department-request';
 import { ProjectRequest } from './project-request';
 
 export class EmployeeRequest {
-    public id : number = null;
+    public id : number = 0;
     public name : string = null;
     public department : DepartmentRequest[] = null;
     public project : ProjectRequest[] = null;

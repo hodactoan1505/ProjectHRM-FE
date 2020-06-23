@@ -14,4 +14,10 @@ export class Exception {
     // Response lỗi khi login thất bại. 
     // Return 997
     public static get loginFail() : number { return 997; }
+
+    // Response lỗi khi tạo mới phòng ban bị trùng tên
+    public static get departmentAlreadyExist() : number { return 142;}
+
+    // Response lỗi khi phòng ban không tồn tại
+    public static get departmentNotFound() : number { return 111;}    
 }

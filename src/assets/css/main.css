@@ -8,6 +8,7 @@
     6. Login
     7. Employee
     8. Department
+    9. Project
 */
 .body.wrap-body {
     margin-left: 200px;
@@ -261,7 +262,7 @@ h2.title-component {
 #login {
     max-width: 300px;
     margin: 0 auto;
-    padding: 200px 0;
+    padding: 200px 0 330px 0;
 }
 
 #login .thumb {
@@ -308,7 +309,6 @@ h2.title-component {
     7. Employee
 */
 section {
-    max-width: 1280px;
     margin: 0 auto;
     padding: 10px;
     background-color: #fff;
@@ -347,7 +347,7 @@ section.search button.btn-search {
 }
 
 .wrap-routing  .multiselect-dropdown .dropdown-btn {
-    padding: 3px 7px;
+    padding: 3px 7px!important;
 }
 
 .wrap-routing  .multiselect-dropdown .dropdown-list .item1 .filter-textbox{
@@ -452,6 +452,8 @@ section.sec-department {
     border: 1px solid #ccc;
     margin-bottom: 20px;
     padding: 20px;
+    height: 180px;
+    overflow: hidden;
 }
 
 span.department-title {
@@ -467,4 +469,53 @@ span.department-title {
     display: block;
     width: 100%;
     margin-bottom: 5px;
+}
+
+/*
+    9. Project
+*/
+section.sec-project .col-check {
+    width: 2%;
+}
+section.sec-project .col-project-id {
+    width: 13%;
+    text-align: center;
+}
+section.sec-project .col-project-name {
+    width: 15%;
+    text-align: center;
+}
+section.sec-project .col-startdate {
+    width: 15%;
+    text-align: center;
+}
+section.sec-project .col-enddate {
+    width: 15%;
+    text-align: center;
+}
+section.sec-project .col-persion {
+    width: 10%;
+    text-align: center;
+}
+section.sec-project .col-derpartment {
+    width: 10%;
+    text-align: center;
+}
+section.sec-project .col-description {
+    width: 20%;
+}
+
+section.sec-project {
+    margin-top: 10px;
+}
+
+table tr.project:hover {
+    background-color: #89ca68;
+}
+
+/* 
+    10. Dashboard
+*/
+.view-more {
+    text-align: center;
 }

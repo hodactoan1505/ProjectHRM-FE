@@ -28,6 +28,8 @@ import { MessageComponent } from './components/message/message.component';
 import { DepartmentComponent } from './components/department/department.component';
 import { ProjectComponent } from './components/project/project.component';
 import { AddDepartmentComponent } from './components/add-department/add-department.component';
+import { ViewDepartmentComponent } from './components/view-department/view-department.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { AddDepartmentComponent } from './components/add-department/add-departme
     DepartmentComponent,
     ProjectComponent,
     AddDepartmentComponent,
+    ViewDepartmentComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

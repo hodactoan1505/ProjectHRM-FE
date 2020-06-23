@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<div class="wrap-routing">
+    <section>
+        <div class="row">
+            <div class="col-md-6">
+                <p>{{ 'dashboard.welcome' | translate }}</p> 
+
+            </div>
+            <div class="col-md-6">
+                <div class="wrap-right">
+                    <h3>{{ 'title.lastNews' | translate }}</h3>
+                    <ol>
+                        <li><a [routerLink]="[ '']">Nội quy công ty</a></li>
+                        <li><a [routerLink]="[ ''  ]">Lịch sử hình thành</a></li>
+                        <li><a [routerLink]="[ ''  ]">Phân bố phòng ban</a></li>
+                        <li><a [routerLink]="[ ''  ]">Tin tức cuôc thi IQ</a></li>
+                        <li><a [routerLink]="[ ''  ]">Thêm tuyến cáp quang biển APG đứt</a></li>
+                        <li><a [routerLink]="[ ''  ]">Thông Báo Về Việc Bảo Trì Server</a></li>
+                        <li><a [routerLink]="[ '' ]">Tiếp tục lùi lịch sửa chữa cáp quang biển IA</a></li>
+                    </ol>
+                    <div class="view-more"><a [routerLink]="[ '' ]">{{ 'title.viewAllNew' | translate }}</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

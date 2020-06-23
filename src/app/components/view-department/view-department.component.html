@@ -1,33 +1,36 @@
 <div class="wrap-routing">
     <div class="container">
         <div class="add-department">
-            <h2 class="title-component">{{ 'title.addDepartment' | translate }}</h2>
+            <h2 class="title-component">{{ 'title.updateDepartment' | translate }}</h2>
             <div class="wrap-deparment">
                 <!-- Tên bộ phận -->
                 <div class="line">
                     <label class="label">{{ 'addDepartment.title' | translate }}</label>
-                    <input type="text"  class="input" [(ngModel)]="department.name"/>
+                    <input type="text"  class="input" [(ngModel)]="department.name" [disabled]="isAdmin"/>
                 </div>
-
                 <!-- Ngày bắt đầu -->
                 <div class="line">
                     <label class="label">{{ 'addDepartment.startdate' | translate }}</label>
                     <input type="date" class="input" 
                         [ngModel]="department.startdate | date : 'yyyy-MM-dd'" 
                         (ngModelChange)="department.startdate = $event" 
-                        [value]="department.startdate | date:'yyyy-MM-dd'"/>
+                        [value]="department.startdate | date:'yyyy-MM-dd'"
+                        [disabled]="isAdmin"/>
                 </div>
                 
                 <!-- Mô tả  -->
                 <div class="line">
                     <label class="label">{{ 'addDepartment.description' | translate }}</label>
-                    <textarea rows="10" cols="50" class="input" [(ngModel)]="department.description"></textarea>
+                    <textarea rows="10" cols="50" class="input" 
+                        [(ngModel)]="department.description"
+                        [disabled]="isAdmin"></textarea>
                 </div>
                 <div class="wrap-action">
-                    <button (click)="create()">{{ 'button.titleAdd' | translate }}</button>
+                    <button (click)="update()" [disabled]="isAdmin">{{ 'button.titleUpdate' | translate }}</button>
                     <button (click)="exit()">{{ 'button.titleBack' | translate }}</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+

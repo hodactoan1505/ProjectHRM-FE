@@ -11,15 +11,13 @@
                             <label class="label">{{ 'group.titleInformation.name' | translate }} </label>
                             <input type="text" class="input" 
                                 [(ngModel)]="employeeRequest.name" 
-                                [ngClass]="{'error-validate': nameValidate}"
-                                [disabled]="isDisable"/>
+                                [ngClass]="{'error-validate': nameValidate}"/>
                         </div>
                         <!-- Thông tin địa chỉ -->
                         <div class="line">
                             <label class="label">{{'group.titleInformation.address' | translate }} </label>
                             <input type="text" class="input" 
-                                [(ngModel)]="employeeRequest.address"
-                                [disabled]="isDisable"/>
+                                [(ngModel)]="employeeRequest.address"/>
                         </div>
                         <!-- Thông tin ngày sinh -->
                         <div class="line">
@@ -27,39 +25,33 @@
                             <input type="date"  class="input"
                                 [ngModel]="employeeRequest.birthday | date : 'yyyy-MM-dd'" 
                                 (ngModelChange)="employeeRequest.birthday = $event" 
-                                [value]="employeeRequest.birthday | date:'yyyy-MM-dd'"
-                                [disabled]="isDisable"/>
+                                [value]="employeeRequest.birthday | date:'yyyy-MM-dd'"/>
                         </div>
                         <!-- Thông tin quê quán -->
                         <div class="line">
                             <label class="label">{{ 'group.titleInformation.queQuan' | translate }}</label>
                             <input type="text" class="input" 
-                                [(ngModel)]="employeeRequest.queQuan"
-                                [disabled]="isDisable"/>
+                                [(ngModel)]="employeeRequest.queQuan"/>
                         </div>
                         <!-- Thông tin giới tính -->
                         <div class="line">
                             <label class="label">{{ 'group.titleInformation.sex' | translate }}</label>
                             <input type="radio" name="sex" 
                                 [value]="true"  
-                                [(ngModel)]="employeeRequest.sex"
-                                [disabled]="isDisable" class="lb-radio"/><label>{{'group.titleInformation.sex.male' | translate }}</label>
+                                [(ngModel)]="employeeRequest.sex" class="lb-radio"/><label>{{'group.titleInformation.sex.male' | translate }}</label>
                             <input type="radio" name="sex" 
                                 [value]="false"  
-                                [(ngModel)]="employeeRequest.sex"
-                                [disabled]="isDisable" class="lb-radio"/><label for="female">{{'group.titleInformation.sex.female' | translate }}</label>
+                                [(ngModel)]="employeeRequest.sex" class="lb-radio"/><label for="female">{{'group.titleInformation.sex.female' | translate }}</label>
                         </div>
                         <!-- Thông tin tình trạng hôn nhân -->
                         <div class="line">
                             <label class="label">{{'group.titleInformation.married' | translate }} </label>
                             <input type="radio" 
                                 [value]="true"  
-                                [(ngModel)]="employeeRequest.married"
-                                [disabled]="isDisable" name="married" class="lb-radio"/><label for="">{{'group.titleInformation.married.alon' | translate }}</label>
+                                [(ngModel)]="employeeRequest.married" name="married" class="lb-radio"/><label for="">{{'group.titleInformation.married.alon' | translate }}</label>
                             <input type="radio" 
                                 [value]="false" 
-                                [(ngModel)]="employeeRequest.married"
-                                [disabled]="isDisable" name="married" class="lb-radio"/><label for="">{{'group.titleInformation.married.notAlon' | translate }}</label>
+                                [(ngModel)]="employeeRequest.married" name="married" class="lb-radio"/><label for="">{{'group.titleInformation.married.notAlon' | translate }}</label>
                         </div>
                     </div>
                 </div>
@@ -70,22 +62,19 @@
                         <div class="line">
                             <label class="label">{{'group.titleInformation.gmail' | translate }} </label>
                             <input type="text" class="input" 
-                                [(ngModel)]="employeeRequest.gmail"
-                                [disabled]="isDisable"/>
+                                [(ngModel)]="employeeRequest.gmail"/>
                         </div>
                         <!-- Thông tin skype -->
                         <div class="line">
                             <label class="label">{{'group.titleInformation.skype' | translate }} </label>
                             <input type="text" class="input" 
-                                [(ngModel)]="employeeRequest.skype"
-                                [disabled]="isDisable"/>
+                                [(ngModel)]="employeeRequest.skype"/>
                         </div>
                         <!-- Thông tin điện thoại -->
                         <div class="line">
                             <label class="label">{{'group.titleInformation.phone' | translate }} </label>
                             <input type="text" class="input" 
-                                [(ngModel)]="employeeRequest.phone"
-                                [disabled]="isDisable"/>
+                                [(ngModel)]="employeeRequest.phone"/>
                         </div>
                     </div>
                     <div class="group width">
@@ -97,8 +86,7 @@
                             [data]="skills" #multiSelect 
                             [settings]="SettingsMultiple"
                             [(ngModel)]="employeeRequest.skills"
-                            [ngClass]="{'error-validate-dropdown': skillValidate}"
-                            [disabled]="isDisable"></ng-multiselect-dropdown>
+                            [ngClass]="{'error-validate-dropdown': skillValidate}"></ng-multiselect-dropdown>
                         </div>
                     </div>
                 </div>
@@ -111,31 +99,26 @@
                                 <img [src]='(employeeRequest.avatar) ? employeeRequest.avatar : src' />
                             </div>
                             <input type="file" 
-                                (change)="handleFileSelect($event)" accept="image/x-png, image/jpeg"
-                                [disabled]="isDisable"/>
+                                (change)="handleFileSelect($event)" accept="image/x-png, image/jpeg"/>
                         </div>
                         <!-- Thông tin bộ phận -->
                         <div class="line">
                             <label class="label">{{'group.titleInformation.department' | translate }}</label>
                             <ng-multiselect-dropdown #multiSelect
-                            [data]="departments" 
+
                             [settings]="SettingsSingle"
                             [(ngModel)]="employeeRequest.department"
-                            (onSelect)="onItemDepartmentSelect($event)"
-                            [ngClass]="{'error-validate-dropdown': departmentValidate}"
-                            (onDeSelect)="onItemDeSelect($event)"
-                            [disabled]="isDepartment"></ng-multiselect-dropdown>
+                            [disabled]="true"></ng-multiselect-dropdown>
                         </div>
         
                         <!-- Thông tin dự án -->
                         <div class="line">
                             <label class="label">{{'group.titleInformation.project' | translate }}</label>
                             <ng-multiselect-dropdown 
-                            [data]="projects" 
+
                             [settings]="SettingsSingle"
                             [(ngModel)]="employeeRequest.project"
-                            [ngClass]="{'error-validate-dropdown': projectValidate}"
-                            [disabled]="isSelectDepartment && isProject"></ng-multiselect-dropdown>
+                            [disabled]="true"></ng-multiselect-dropdown>
                         </div>
                         <!-- Thông tin hết hạn thử việc -->
                         <div class="line">
@@ -144,7 +127,7 @@
                                 [ngModel]="employeeRequest.finishTraning | date : 'yyyy-MM-dd'" 
                                 (ngModelChange)="employeeRequest.finishTraning = $event" 
                                 [value]="employeeRequest.finishTraning | date:'yyyy-MM-dd'"
-                                [disabled]="isBlock"/>
+                                disabled/>
                         </div> 
                         <!-- Thông tin ngày vào công ty -->
                         <div class="line">
@@ -153,7 +136,7 @@
                                 [ngModel]="employeeRequest.joinCompany | date : 'yyyy-MM-dd'" 
                                 (ngModelChange)="employeeRequest.joinCompany = $event" 
                                 [value]="employeeRequest.joinCompany | date:'yyyy-MM-dd'"
-                                [disabled]="isBlock"/>
+                                disabled/>
                         </div> 
                     </div>
                 </div>

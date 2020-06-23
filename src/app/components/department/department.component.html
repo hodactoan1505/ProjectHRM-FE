@@ -4,7 +4,7 @@
             <h2 class="title-component">{{ 'title.department' | translate }}</h2>
             <div class="row">
                 <div class="col-md-4" *ngFor="let item of departments">
-                    <div class="department">
+                    <div class="department" (click)="view(item.id)">
                         <h3>{{item.name}}</h3>
                         <div class="department-row">
                             <span class="department-title">Ngày thành lập:</span>

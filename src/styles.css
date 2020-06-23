@@ -15,7 +15,7 @@ a:hover {
     text-decoration:none;
 }
 
-button:focus {
+button:focus, textarea:focus, input:focus, .dropdown-btn:focus {
     outline: none;
 }
 
@@ -30,11 +30,4 @@ table {
     white-space: nowrap;
 }
 
-input:focus {
-    outline: none;
-}
-
-.dropdown-btn:focus {
-    outline: none;
-}
 

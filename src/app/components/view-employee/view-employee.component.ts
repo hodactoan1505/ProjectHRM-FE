@@ -25,7 +25,8 @@ import { error } from 'protractor';
 export class ViewEmployeeComponent implements OnInit {
 
   user : UserResponse = new UserResponse;
-  
+    // Hình mặc định
+    src="../../../assets/images/avatar.jpg";
   /*
     Danh sách cài đặt của selectbox
   */
